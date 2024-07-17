@@ -9,5 +9,7 @@ userRouter.get('/users/me', authMiddleware.required, userController.profileMe);
 userRouter.get('/users/:uuid', userController.profile);
 userRouter.get('/login', userController.loginGet);
 userRouter.post('/login', userController.loginPost);
+userRouter.get('/register', userController.registerGet);
+userRouter.post('/register', userController.registerPost);
 
 export default userRouter;

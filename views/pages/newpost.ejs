@@ -83,8 +83,8 @@
         <input type="text" id="title" name="title" required>
 
         <div id="image-inputs">
-            <label for="images">Images <span>*</span></label>
-            <input type="file" id="images" name="images[]" accept="image/*" required>
+            <label for="images">Images (JPEG or PNG only)<span>*</span></label>
+            <input type="file" id="images" name="images[]" accept="image/png, image/jpeg" required>
         </div>
         <button type="button" onclick="addImageInput()">Add Another Image</button>
         <small>Maximum 5 images allowed.</small>

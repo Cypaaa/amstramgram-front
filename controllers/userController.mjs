@@ -53,12 +53,28 @@ const loginPost = async (req, res) => {
     }
 };
 
+const registerGet = async (req, res) => {
+    res.render('pages/register.ejs');
+};
+
+const registerPost = async (req, res) => {
+    const { email, password, name, username, presentation } = req.body;
+    const result = await userService.createUser(email, password, name, username, presentation);
+    if (result?.data.length == 32) {
+        res.redirect('/login');
+    } else {
+        res.redirect('/register');
+    }
+};
+
 const postController = {
     home,
     profile,
     profileMe,
     loginGet,
-    loginPost
+    loginPost,
+    registerGet,
+    registerPost
 };
 
 export default postController;

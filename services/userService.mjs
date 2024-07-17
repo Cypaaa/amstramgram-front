@@ -38,9 +38,27 @@ const Login = async (username, email, password) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            username: username,
-            email: email,
-            password: password
+            username,
+            email,
+            password
+        })
+    });
+    return await response.json();
+};
+
+const createUser = async (email, password, name, username, presentation) => {
+    const response = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: {
+            'Authorization': null,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email,
+            password,
+            name,
+            username,
+            presentation
         })
     });
     return await response.json();
@@ -50,7 +68,8 @@ const userService = {
     getUserSelf,
     getUsers,
     getUser,
-    Login
+    Login,
+    createUser
 };
 
 export default userService;
