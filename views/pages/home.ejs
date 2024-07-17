@@ -1,0 +1,102 @@
+<style>
+    .home {
+        width: 100%;
+        max-width: 91.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .home .suggestion {
+        width: 100%;
+        margin-top: 1.7rem;
+        padding: .3rem .4rem;
+        font-weight: 750;
+    }
+
+
+    .home hr {
+        width: calc(100% - 1rem);
+        border-color: lightgrey;
+    }
+
+    .greyed {
+        color: lightgrey;
+    }
+
+    .accounts {
+        width: 100%;
+        max-width: 35rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .account {
+        padding: .5rem 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .account a {
+        display: flex;
+        align-items: center;
+    }
+
+    .account img {
+        width: 44px;
+        height: 44px;
+        border-radius: 22px;
+    }
+
+    .account .user-info {
+        padding: 0 1rem;
+        color: black;
+        font-size: .9rem;
+        line-height: 1.1rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .account .name,
+    .account .popular {
+        color: grey;
+    }
+
+    .account .popular {
+        font-size: .8rem;
+    }
+
+    .account .follow {
+        margin-left: auto;
+        padding: .35rem 1.25rem;
+        color: white;
+        font-size: .9rem;
+        background-color: rgb(0, 149, 246);
+        border-radius: .5rem;
+    }
+</style>
+
+<div class="home">
+    <div class="suggestion">
+        <span>Suggested for you</span>
+        <span class="greyed" style="margin-left: .5rem;">More accounts</span>
+    </div>
+    <hr>
+    <div class="accounts">
+        <% users.forEach(user => { %>
+            <div class="account">
+                <a href="/users/<%= user.uuid %>">
+                    <img src="https://placehold.co/44x44" alt="user icon">
+                    <div class="user-info">
+                        <span><b><%= user.username %></b></span>
+                        <span class="name"><%= user.name %></span>
+                        <span class="popular">Popular</span>
+                    </div>
+                </a>
+                <a class="follow">
+                    <span><b>Follow</b></span>
+                </a>
+            </div>
+        <% }) %>    
+    </div>
+</div>

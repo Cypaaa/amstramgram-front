@@ -1,0 +1,29 @@
+{
+  "name": "amstramgram-front",
+  "version": "1.0.0",
+  "main": "app.mjs",
+  "type": "module",
+  "scripts": {
+    "start": "npm i && node app.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cypaaa/amstramgram-front.git"
+  },
+  "author": "Cyprien",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cypaaa/amstramgram-front/issues"
+  },
+  "homepage": "https://github.com/Cypaaa/amstramgram-front#readme",
+  "description": "",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-ejs-layouts": "^2.5.1",
+    "form-data": "^4.0.0",
+    "multer": "^1.4.5-lts.1",
+    "node-fetch": "^3.3.2"
+  }
+}

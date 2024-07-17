@@ -1,0 +1,146 @@
+<style>
+    .form-container {
+        max-width: 80rem;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+    }
+
+    .form-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .form-container label {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .form-container input[type="text"],
+    .form-container input[type="file"] {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .form-container button {
+        display: block;
+        margin: 10px auto;
+        padding: 10px 20px;
+        background-color: #3897f0;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .form-container button:hover {
+        background-color: #287bb5;
+    }
+
+    .form-container input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .form-container input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+
+    .form-container small {
+        display: block;
+        margin-top: -10px;
+        margin-bottom: 10px;
+        color: #888;
+    }
+
+    .form-container .error-message {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+</style>
+
+<div class="form-container">
+    <h2>Create a Post</h2>
+    <form action="#" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+        <label for="title">Title <span>*</span></label>
+        <input type="text" id="title" name="title" required>
+
+        <div id="image-inputs">
+            <label for="images">Images <span>*</span></label>
+            <input type="file" id="images" name="images[]" accept="image/*" required>
+        </div>
+        <button type="button" onclick="addImageInput()">Add Another Image</button>
+        <small>Maximum 5 images allowed.</small>
+
+        <input type="submit" value="Submit">
+        <p id="error-msg" class="error-message"></p>
+    </form>
+</div>
+
+<script>
+    var imageInputCount = 1;
+
+    function addImageInput() {
+        if (imageInputCount < 5) {
+            imageInputCount++;
+            var div = document.createElement('div');
+            div.innerHTML = '<label for="images">Image ' + imageInputCount + '</label>' +
+                '<input type="file" id="images' + imageInputCount + '" name="images[]" accept="image/*" required>';
+            document.getElementById('image-inputs').appendChild(div);
+        } else {
+            alert('Maximum 5 images allowed.');
+        }
+    }
+
+    function validateForm() {
+        var title = document.getElementById('title').value.trim();
+        var images = document.querySelectorAll('input[type="file"]');
+
+        if (title === '') {
+            displayErrorMessage('Please enter a title.');
+            return false;
+        }
+
+        var hasImage = false;
+        for (var i = 0; i < images.length; i++) {
+            if (images[i].files.length > 0) {
+                hasImage = true;
+                break;
+            }
+        }
+
+        if (!hasImage) {
+            displayErrorMessage('Please select at least one image.');
+            return false;
+        }
+
+        if (images.length > 5) {
+            displayErrorMessage('Maximum 5 images allowed.');
+            return false;
+        }
+
+        return true;
+    }
+
+    function displayErrorMessage(message) {
+        var errorElement = document.getElementById('error-msg');
+        errorElement.textContent = message;
+    }
+</script>
